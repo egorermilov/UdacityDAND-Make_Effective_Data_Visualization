@@ -1,0 +1,68 @@
+<html>
+
+  
+
+
+<h1>Plot 1</h1>
+<div id="chartContainer1">
+<script src="d3.min.js"></script>
+  <script src="dimple.v2.3.0.min.js"></script>
+ <script type="text/javascript">
+    var svg = dimple.newSvg("#chartContainer1", 590, 400);
+    d3.csv("baseball_data.csv", function (data) {
+      var myChart = new dimple.chart(svg, data);
+        myChart.setBounds(60, 30, 500, 330)
+        var x = myChart.addCategoryAxis("x", "handedness");
+        var y = myChart.addMeasureAxis("y", "avg");
+        var avg = myChart.addSeries(null, dimple.plot.bar);
+        avg.aggregate = dimple.aggregateMethod.avg;
+        myChart.addLegend(200, 10, 360, 20, "right");
+        myChart.draw();
+    });
+  </script>
+</div>
+
+<h1>Plot 2</h1>
+
+<div id="chartContainer2">
+<script src="d3.min.js"></script>
+  <script src="dimple.v2.3.0.min.js"></script>
+ <script type="text/javascript">
+    var svg = dimple.newSvg("#chartContainer2", 590, 400);
+    d3.csv("baseball_data.csv", function (data) {
+      var myChart = new dimple.chart(svg, data);
+        myChart.setBounds(60, 30, 500, 330)
+        var x = myChart.addCategoryAxis("x", "handedness");
+        var y = myChart.addMeasureAxis("y", "HR");
+        var avg = myChart.addSeries(null, dimple.plot.bar);
+        avg.aggregate = dimple.aggregateMethod.avg;
+        myChart.addLegend(200, 10, 360, 20, "right");
+        myChart.draw();
+    });
+  </script>
+</div>
+
+<h1>Plot 3</h1>
+
+<div id="chartContainer3">
+<script src="d3.min.js"></script>
+  <script src="dimple.v2.3.0.min.js"></script>
+ <script type="text/javascript">
+      var svg = dimple.newSvg("#chartContainer3", 590, 400);
+    d3.csv("baseball_data.csv", function (data) {
+      var myChart = new dimple.chart(svg, data);
+        myChart.setBounds(60, 30, 500, 330)
+        var x = myChart.addMeasureAxis("x", "weight");
+x.overrideMin = 120;
+x.overrideMax = 260;
+        var y = myChart.addMeasureAxis("y", "height");
+y.overrideMin = 60;
+y.overrideMax = 90;
+	myChart.addSeries("name", dimple.plot.bubble, [x,y]);
+         myChart.draw();
+    });
+  </script>
+</div>
+
+
+</html>

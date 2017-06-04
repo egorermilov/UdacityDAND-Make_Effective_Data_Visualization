@@ -1,0 +1,57 @@
+<html>
+
+<h1>Baseball Players: left-handed vs right-handed</h1>
+
+<h2>Batting Average</h2>
+
+<p> In baseball, the batting average is defined by the number of hits divided by at bats. <a href="https://en.wikipedia.org/wiki/Batting_average">Source</a></p>
+
+<div id="chartContainer1">
+<script src="d3.min.js"></script>
+  <script src="dimple.v2.3.0.min.js"></script>
+ <script type="text/javascript">
+    var svg = dimple.newSvg("#chartContainer1", 590, 400);
+    d3.csv("baseball_data.csv", function (data) {
+      var myChart = new dimple.chart(svg, data);
+        myChart.setBounds(60, 30, 500, 330)
+        var x = myChart.addCategoryAxis("x", "handedness");
+	x.title = "Handedness";
+        var y = myChart.addMeasureAxis("y", "avg");
+	y.title = "Batting Average";
+        var avg = myChart.addSeries(null, dimple.plot.bar);
+        avg.aggregate = dimple.aggregateMethod.avg;
+        myChart.draw();
+    });
+  </script>
+</div>
+
+<p> The mean batting average of right-handed players is lower than right-handed and ambidextrous players. </p>
+
+<h2>Home Runs</h2>
+
+<p> In baseball, a home run is scored when the ball is hit in such a way that the batter is able to circle <br> the bases and reach home safely in one play without any errors being committed by <br> the defensive team in the process. <a href="https://en.wikipedia.org/wiki/Home_run">Source</a></p>
+
+<div id="chartContainer2">
+<script src="d3.min.js"></script>
+  <script src="dimple.v2.3.0.min.js"></script>
+ <script type="text/javascript">
+    var svg = dimple.newSvg("#chartContainer2", 590, 400);
+    d3.csv("baseball_data.csv", function (data) {
+      var myChart = new dimple.chart(svg, data);
+        myChart.setBounds(60, 30, 500, 330)
+        var x = myChart.addCategoryAxis("x", "handedness");
+	x.title = "Handedness";
+        var y = myChart.addMeasureAxis("y", "HR");
+	y.title = "Home runs";
+        var avg = myChart.addSeries(null, dimple.plot.bar);
+        avg.aggregate = dimple.aggregateMethod.avg;
+        myChart.draw();
+    });
+  </script>
+</div>
+
+<p> Left-handed players have a higher number of home runs than the other players. </p>
+
+
+
+</html>

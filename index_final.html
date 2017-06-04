@@ -1,0 +1,91 @@
+<html>
+<head>
+
+    <title>Baseball Players: left-handed vs right-handed</title>
+
+</head>
+
+<body>
+    <h1>Baseball Players: left-handed vs right-handed</h1>
+
+    <h2>Batting Average</h2>
+
+    <p> In baseball, the batting average is defined by the number of hits divided by at bats. <a href="https://en.wikipedia.org/wiki/Batting_average">Source</a></p>
+
+    <div id="chartContainer1">
+        <script src="d3.min.js"></script>
+        <script src="dimple.v2.3.0.min.js"></script>
+        <script type="text/javascript">
+            // Create and svg tag containing the plot
+            var svg = dimple.newSvg("#chartContainer1", 590, 400);
+            // Load the dataset from baseball_data.csv
+            d3.csv("baseball_data.csv", function (data) {
+                // Create new chart
+                var myChart = new dimple.chart(svg, data);
+                // Set the size of the plot within the svg
+                myChart.setBounds(60, 30, 500, 330);
+
+                // Add handedness on the x-axis
+                var x = myChart.addCategoryAxis("x", "handedness");
+                // Change the axis title
+                x.title = "Handedness";
+
+                // Add avg on the y-axis
+                var y = myChart.addMeasureAxis("y", "batting_average");
+                // Change the axis title
+                y.title = "Batting Average";
+
+                // Create a new series object
+                var avg = myChart.addSeries(null, dimple.plot.bar);
+                // Change aggregation method (sum is set by default)
+                avg.aggregate = dimple.aggregateMethod.avg;
+
+                myChart.draw();
+            });
+        </script>
+    </div>
+
+    <p> The mean batting average of right-handed players is lower than left-handed and ambidextrous players. </p>
+
+    <h2>Home Runs</h2>
+
+    <p> In baseball, a home run is scored when the ball is hit in such a way that the batter is able to circle <br> the bases and reach home safely in one play without any errors being committed by <br> the defensive team in the process. <a href="https://en.wikipedia.org/wiki/Home_run">Source</a></p>
+
+    <div id="chartContainer2">
+        <script src="d3.min.js"></script>
+        <script src="dimple.v2.3.0.min.js"></script>
+        <script type="text/javascript">
+            // Create and svg tag containing the plot
+            var svg = dimple.newSvg("#chartContainer2", 590, 400);
+            // Load the dataset from baseball_data.csv
+            d3.csv("baseball_data.csv", function (data) {
+                // Create new chart
+                var myChart = new dimple.chart(svg, data);
+                // Set the size of the plot within the svg
+                myChart.setBounds(60, 30, 500, 330)
+
+                // Add handedness on the x-axis
+                var x = myChart.addCategoryAxis("x", "handedness");
+                // Change the axis title
+                x.title = "Handedness";
+
+                // Add HR on the y-axis
+                var y = myChart.addMeasureAxis("y", "home_runs");
+                // Change the axis title
+                y.title = "Home runs";
+
+                // Create a new series object
+                var avg = myChart.addSeries(null, dimple.plot.bar);
+                // Change aggregation method (sum is set by default)
+                avg.aggregate = dimple.aggregateMethod.avg;
+
+                myChart.draw();
+            });
+        </script>
+    </div>
+
+    <p> Left-handed players have a higher number of home runs than the other players. </p>
+
+
+</body>
+</html>
